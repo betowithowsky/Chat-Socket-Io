@@ -47,6 +47,7 @@
   </head>
   <body>
     <ul id="messages"></ul>
+    <div id="tiping" style="position: absolute;bottom: 45px;left: 10px;"></div>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
@@ -62,7 +63,25 @@
           return false;
         });
         socket.on("chat message", function(msg) {
-          $("#messages").append($("<li>").text(msg));
+          $("#messages").append($("<li>").text(socket.id + ": " + msg));
+        });
+      });
+    </script>
+    <script>
+      $(() => {
+        let socket = io();
+        $("#m").keypress(() => {
+          socket.emit("user typing");
+        });
+        socket.on("user typing", () => {
+          if (!document.getElementById("tiping-div")) {
+            $("#tiping").append(
+              $("<div id='tiping-div'>").text("digitando...")
+            );
+            setTimeout(function() {
+              $("#tiping").empty();
+            }, 1000);
+          }
         });
       });
     </script>

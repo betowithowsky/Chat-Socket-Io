@@ -12,8 +12,12 @@ io.on("connection", socket => {
     console.log("desconectado");
   });
 
-  socket.on("chat message", function(msg) {
+  socket.on("chat message", msg => {
     io.emit("chat message", msg);
+  });
+
+  socket.on("user typing", () => {
+    io.emit("user typing");
   });
 });
 
