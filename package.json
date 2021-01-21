@@ -4,6 +4,6 @@
   "description": "Projeto de estudo, utilizando nodejs, express e socket.io, para o desenvolvimento de um bate papo interativo.",
   "dependencies": {
     "express": "^4.17.1",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   }
 }
